@@ -1,17 +1,50 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, IconButton, Drawer, List, ListItem, ListItemText, useMediaQuery, useTheme, Avatar } from '@mui/material';
-import { Sun, Menu as MenuIcon } from 'lucide-react';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  useMediaQuery,
+  useTheme,
+  Avatar
+} from '@mui/material';
+import {
+  Sun,
+  Menu as MenuIcon,
+} from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-// Navbar Component
+// Navbar Component with React Router
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname;
 
-  const navItems = ['Home', 'Services', 'About', 'Contact'];
+  const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' }
+  ];
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    if (mobileOpen) {
+      setMobileOpen(false);
+    }
   };
 
   const drawer = (
@@ -21,14 +54,16 @@ const Navbar = () => {
       </Typography>
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.name} disablePadding>
             <ListItemText 
-              primary={item} 
+              primary={item.name}
+              onClick={() => handleNavigation(item.path)}
               sx={{ 
                 textAlign: 'center',
+                cursor: 'pointer',
                 '& .MuiTypography-root': {
-                  color: '#374151',
-                  fontWeight: 500,
+                  color: currentPath === item.path ? '#1E3A8A' : '#374151',
+                  fontWeight: currentPath === item.path ? 600 : 500,
                   '&:hover': {
                     color: '#1E3A8A',
                   }
@@ -71,16 +106,21 @@ const Navbar = () => {
       >
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-            <Avatar sx={{ bgcolor: '#1E3A8A', mr: 2, width: 32, height: 32 }}>
+            <Avatar 
+              sx={{ bgcolor: '#1E3A8A', mr: 2, width: 32, height: 32, cursor: 'pointer' }}
+              onClick={() => handleNavigation('/')}
+            >
               <Sun size={20} color="white" />
             </Avatar>
             <Typography
               variant="h6"
               component="div"
+              onClick={() => handleNavigation('/')}
               sx={{ 
                 fontWeight: 'bold',
                 color: '#111827',
-                fontSize: isMobile ? '1.1rem' : '1.25rem'
+                fontSize: isMobile ? '1.1rem' : '1.25rem',
+                cursor: 'pointer'
               }}
             >
               EcoSpark Solutions
@@ -91,18 +131,20 @@ const Navbar = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
               {navItems.map((item) => (
                 <Button
-                  key={item}
+                  key={item.name}
+                  onClick={() => handleNavigation(item.path)}
                   sx={{
-                    color: '#374151',
-                    fontWeight: 500,
+                    color: currentPath === item.path ? '#1E3A8A' : '#374151',
+                    fontWeight: currentPath === item.path ? 600 : 500,
                     textTransform: 'none',
                     '&:hover': {
                       color: '#1E3A8A',
                       backgroundColor: 'transparent'
-                    }
+                    },
+                    borderBottom: currentPath === item.path ? '2px solid #1E3A8A' : 'none'
                   }}
                 >
-                  {item}
+                  {item.name}
                 </Button>
               ))}
               <Button
