@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Container, Typography, Grid } from '@mui/material';
 import HeroCarousel from '../components/HomePage/HeroCarousel';
 import FeatureCard from '../components/HomePage/FeatureCard';
-import CTASection from '../components/HomePage/CTASection';
+import CTASection from '../components/CTASection';
 import { heroSlides, features } from '../components/HomePage/HomepageData';
 
 const Homepage = () => {
