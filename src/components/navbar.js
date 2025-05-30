@@ -1,18 +1,7 @@
 import React, { useState } from 'react';
+import { Phone } from 'lucide-react';
 import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  useMediaQuery,
-  useTheme,
-  Avatar
+  AppBar, Toolbar, Typography, Button, Box, IconButton, Drawer, List, ListItem, ListItemText, useMediaQuery, useTheme, Avatar
 } from '@mui/material';
 import {
   Sun,
@@ -55,10 +44,10 @@ const Navbar = () => {
       <List>
         {navItems.map((item) => (
           <ListItem key={item.name} disablePadding>
-            <ListItemText 
+            <ListItemText
               primary={item.name}
               onClick={() => handleNavigation(item.path)}
-              sx={{ 
+              sx={{
                 textAlign: 'center',
                 cursor: 'pointer',
                 '& .MuiTypography-root': {
@@ -76,6 +65,7 @@ const Navbar = () => {
           <Button
             variant="contained"
             fullWidth
+            onClick={() => window.location.href = 'tel:+15551237627'}
             sx={{
               mt: 2,
               backgroundColor: '#F97316',
@@ -86,7 +76,7 @@ const Navbar = () => {
               fontWeight: 600
             }}
           >
-            Get Quote
+            Call for Quote
           </Button>
         </ListItem>
       </List>
@@ -95,9 +85,9 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar 
-        position="fixed" 
-        sx={{ 
+      <AppBar
+        position="fixed"
+        sx={{
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
           backdropFilter: 'blur(10px)',
           boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
@@ -106,7 +96,7 @@ const Navbar = () => {
       >
         <Toolbar>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-            <Avatar 
+            <Avatar
               sx={{ bgcolor: '#1E3A8A', mr: 2, width: 32, height: 32, cursor: 'pointer' }}
               onClick={() => handleNavigation('/')}
             >
@@ -116,7 +106,7 @@ const Navbar = () => {
               variant="h6"
               component="div"
               onClick={() => handleNavigation('/')}
-              sx={{ 
+              sx={{
                 fontWeight: 'bold',
                 color: '#111827',
                 fontSize: isMobile ? '1.1rem' : '1.25rem',
@@ -147,17 +137,20 @@ const Navbar = () => {
                   {item.name}
                 </Button>
               ))}
+
               <Button
                 variant="contained"
+                fullWidth
+                startIcon={<Phone size={18} />}
+                onClick={() => window.location.href = 'tel:+15551237627'}
                 sx={{
+                  mt: 2,
                   backgroundColor: '#F97316',
                   '&:hover': {
                     backgroundColor: '#EA580C',
                   },
                   borderRadius: '25px',
-                  px: 3,
-                  fontWeight: 600,
-                  textTransform: 'none'
+                  fontWeight: 600
                 }}
               >
                 Get Quote
