@@ -4,12 +4,14 @@ import { Sun, Shield, Users, Award, Zap, CheckCircle, MapPin, Calendar, Wrench }
 import CTASection from '../components/CTASection';
 
 const About = () => {
-  const stats = [
-    { number: '3+', label: 'Years in Business', icon: Calendar },
-    { number: '300+', label: 'Installations Completed', icon: Sun },
-    { number: '15+', label: 'Certified Electricians', icon: Users },
-    { number: '98%', label: 'Customer Satisfaction', icon: Award }
-  ];
+
+   const stats = [
+      { number: '3+', label: 'Years in Business', icon: Calendar },
+      { number: '300+', label: 'Installations Completed', icon: Sun },
+      { number: '15+', label: 'Certified Electricians', icon: Users },
+      { number: '98%', label: 'Customer Satisfaction', icon: Award }
+    ];
+  
 
   const certifications = [
     'Licensed Electrical Contractors',
@@ -136,6 +138,7 @@ const About = () => {
   </Container>
 </Box>
 
+    
       {/* Our Story Section */}
       <Box sx={{ py: 4 }}>
         <Container maxWidth="lg">
@@ -163,44 +166,63 @@ const About = () => {
         </Container>
       </Box>
 
-      {/* Values Section */}
-      <Box sx={{ py: 8, backgroundColor: '#F8FAFC' }}>
-        <Container maxWidth="lg">
-          <Box sx={{ textAlign: 'center', mb: 2 }}>
-            <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#111827', mb: 2 }}>
-              Our Values
-            </Typography>
-            <Typography variant="h6" sx={{ color: '#6B7280' }}>
-              The principles that guide everything we do
-            </Typography>
-          </Box>
-          
-          <Grid container spacing={4}>
-            {teamValues.map((value, index) => {
-              const IconComponent = value.icon;
-              return (
-                <Grid item xs={12} md={6} key={index}>
-                  <Card sx={{ p: 4, height: '100%', '&:hover': { transform: 'translateY(-2px)' }, transition: 'all 0.2s' }}>
-                    <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 3 }}>
-                      <Avatar sx={{ bgcolor: '#F97316', width: 48, height: 48 }}>
-                        <IconComponent size={24} color="white" />
-                      </Avatar>
-                      <Box>
-                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#111827', mb: 2 }}>
-                          {value.title}
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: '#6B7280', lineHeight: 1.6 }}>
-                          {value.description}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Card>
-                </Grid>
-              );
-            })}
+ {/* Values Section */}
+<Box sx={{ py: 8, backgroundColor: '#F8FAFC' }}>
+  <Container maxWidth="lg">
+    <Box sx={{ textAlign: 'center', mb: 6 }}>
+      <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#111827', mb: 2 }}>
+        Our Values
+      </Typography>
+      <Typography variant="h6" sx={{ color: '#6B7280' }}>
+        The principles that guide everything we do
+      </Typography>
+    </Box>
+
+    {/* Wrap values in a Grid with flex wrap support */}
+    <Grid 
+      container 
+      spacing={4} 
+      justifyContent="center" 
+      alignItems="stretch"
+    >
+      {teamValues.map((value, index) => {
+        const IconComponent = value.icon;
+        return (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+            <Card sx={{ 
+              p: 3, 
+              height: '100%', 
+              textAlign: 'center',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+              '&:hover': { 
+                transform: 'translateY(-4px)',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)'
+              }, 
+              transition: 'all 0.3s ease'
+            }}>
+              <Avatar sx={{ 
+                bgcolor: '#F97316', 
+                width: 64, 
+                height: 64, 
+                mx: 'auto', 
+                mb: 3 
+              }}>
+                <IconComponent size={32} color="white" />
+              </Avatar>
+              <Typography variant="h6" sx={{ fontWeight: 600, color: '#111827', mb: 2 }}>
+                {value.title}
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#6B7280', lineHeight: 1.6 }}>
+                {value.description}
+              </Typography>
+            </Card>
           </Grid>
-        </Container>
-      </Box>
+        );
+      })}
+    </Grid>
+  </Container>
+</Box>
+
 
       {/* Certifications Section */}
       <Box sx={{ py: 8 }}>

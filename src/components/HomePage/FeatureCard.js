@@ -4,6 +4,7 @@ import { Card, Avatar, Typography, Grid } from '@mui/material';
 const FeatureCard = ({ icon: Icon, title, description, iconColor = '#1E3A8A' }) => {
   return (
     <Grid item xs={12} md={4}>
+      
       <Card 
         sx={{ 
           textAlign: 'center', 

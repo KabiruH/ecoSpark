@@ -4,16 +4,26 @@ import HeroCarousel from '../components/HomePage/HeroCarousel';
 import FeatureCard from '../components/HomePage/FeatureCard';
 import CTASection from '../components/CTASection';
 import { heroSlides, features } from '../components/HomePage/HomepageData';
+import StatsSection from '../components/HomePage/StatsSection';
 
 const Homepage = () => {
+
+
   return (
     <Box>
       {/* Hero Section */}
-      <HeroCarousel 
+      <HeroCarousel
         slides={heroSlides}
         title="Power Your Home with"
         titleHighlight="Solar"
       />
+
+      {/* Stats Section */}
+      <StatsSection
+        title="Trusted Solar Experts"
+        subtitle="Since 2022, we've been helping families and businesses harness the power of solar energy with professional installations and exceptional service."
+      />
+
 
       {/* Features Section */}
       <Box sx={{ py: 8, backgroundColor: '#F8FAFC' }}>
@@ -26,7 +36,7 @@ const Homepage = () => {
               Comprehensive solar solutions from consultation to installation and maintenance
             </Typography>
           </Box>
-          
+
           <Grid container spacing={3} justifyContent="center">
             {features.map((feature, index) => (
               <FeatureCard
